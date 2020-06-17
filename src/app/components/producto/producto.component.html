@@ -1,0 +1,107 @@
+<div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalScrollableTitle">Editar Producto</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form class="form mr-lg-auto" #postEditForm="ngForm" >
+            <input name="codigoProducto" hidden="" type="text" class="form-control" [(ngModel)]="tempProduct.id">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre</label>
+                    <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="tempProduct.name" required pattern="[a-zA-Z ]+">
+                    <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Descripción</label>
+                    <input type="text" name="description" class="form-control"  [(ngModel)]="tempProduct.description">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Existencia Actual</label>
+                    <input type="number" name="actual" class="form-control"  [(ngModel)]="tempProduct.currentExist" >
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Existencia Mínima</label>
+                    <input type="number" name="minima" class="form-control"  [(ngModel)]="tempProduct.minExist">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Precio</label>
+                    <input type="number" name="price" class="form-control" [(ngModel)]="tempProduct.price" >
+                </div>
+            </div>
+            <!--
+            <div class="form-group">
+                <label>Imagen</label>
+                <angular-file-uploader
+                  [config]="afuConfig"
+                  [resetUpload]=resetVar
+                  (ApiResponse)="imageUpload($event)">
+                </angular-file-uploader>
+            </div>
+            <div class="form-group">
+                <label>Categoria</label>
+                <select name="category_id" #category="ngModel" [(ngModel)]="post.category_id" class="form-control">
+                  <option *ngFor="let cat of categories" value="{{cat.id}}">
+                    {{cat.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Proveedores</label>
+                <select name="category_id" #category="ngModel" [(ngModel)]="post.category_id" class="form-control">
+                  <option *ngFor="let cat of categories" value="{{cat.id}}">
+                    {{cat.name}}
+                  </option>
+                </select>
+              </div>
+              -->
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <input name="agregar" id="editar" type="submit" class="btn btn-light" value="Editar" data-dismiss="modal">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+<div class="table-responsive-sm">
+    <table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Existencia Acual</th>
+        <th scope="col">Existencia Mínima</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Proveedor</th>
+        <th scope="col">Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ product.id}}</td>
+        <td>{{ product.name}}</td>
+        <td>{{ product.description}}</td>
+        <td>{{ product.currentExist}}</td>
+        <td>{{ product.minExist}}</td>
+        <td>{{ product.price}}</td>
+        <td><img src="{{product.picture}}" class="w-100"></td>
+        <td>{{ product.idCategory}}</td>
+        <td>{{ product.idSupplier}}</td>
+        <td><button (click)="getProduct(product.id)" data-toggle="modal" data-target="#ModalEditar" class="btn btn-info">Editar</button></td>
+    </tr>
+    </tbody>
+    </table>
+</div>

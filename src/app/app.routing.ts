@@ -8,13 +8,14 @@ import{RegisterComponent} from './components/register/register.component';
 import{PostNewComponent} from './components/post-new/post-new.component';
 import{UserEditComponent} from './components/user-edit/user-edit.component';
 import {PostDetailComponent} from './components/post-detail/post-detail.component';
+import { ProductoComponent } from './components/producto/producto.component';
 import{PostEditComponent} from './components/post-edit/post-edit.component';
-
 
 const appRoutes: Routes=[
   {path:'',component:HomeComponent},
   {path:'inicio',component:HomeComponent},
   {path:'inicio/:id',component:HomeComponent},
+  {path:'producto',component:ProductoComponent},
   {path:'login',component:LoginComponent},
   {path:'registro',component:RegisterComponent},
   {path:'crear-post',component:PostNewComponent},

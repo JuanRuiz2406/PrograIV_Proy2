@@ -25,7 +25,7 @@ export class CategoryNewComponent implements OnInit {
   ) {
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
-    this.category=new Category(1,'');
+    //this.category=new Category(1,'');
   }
 
   ngOnInit(): void {

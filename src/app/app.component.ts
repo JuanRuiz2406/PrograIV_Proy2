@@ -32,7 +32,6 @@ export class AppComponent {
   }
   ngDoCheck(){
     this.times++;
-    console.log(this.times);
     if(this.times>1){
       this.loadStorage();
       this.loadCategories();
@@ -42,13 +41,10 @@ export class AppComponent {
   public loadCategories(){
     this._categoryService.getCategories().subscribe(
       response=>{
-        console.log(response);
         if(response.status=="success"){
           this.categories=response.data;
-          console.log(this.categories);
         }else{
           this.categories=null;
-        console.log(response);
         }
       },
       error=>{

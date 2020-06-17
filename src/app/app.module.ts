@@ -18,6 +18,7 @@ import { PostNewComponent } from './components/post-new/post-new.component';
 import { CategoryNewComponent } from './components/category-new/category-new.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import { ProductoComponent } from './components/producto/producto.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
     PostNewComponent,
     CategoryNewComponent,
     PostDetailComponent,
-    PostEditComponent
+    PostEditComponent,
+    ProductoComponent
   ],
   imports: [
     BrowserModule,
