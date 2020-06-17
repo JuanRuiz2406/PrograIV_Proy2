@@ -1,0 +1,21 @@
+<div class="col-md-12 mt-3">
+  <h1>Registro de nueva Categoria</h1>
+
+  <div class="alert alert-success" *ngIf="status=='success'">
+      El registro se almacenó correctamente!
+  </div>
+  <div class="alert alert-danger" *ngIf="status=='error'">
+    Error al almacenar la información!
+</div>
+
+  <form class="col-md-6 mr-auto ml-auto" #newCategoryForm="ngForm" (ngSubmit)="onSubmit(newCategoryForm)">
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="category.name" required pattern="[a-zA-Z]+">
+      <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+    </div>
+
+    <input type="submit" value="Crear Categoria" class="btn btn-success" [disabled]="newCategoryForm.invalid">
+  </form>
+
+</div>
