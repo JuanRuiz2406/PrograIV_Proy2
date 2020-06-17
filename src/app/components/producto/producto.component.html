@@ -97,7 +97,10 @@
         <td>{{ product.currentExist}}</td>
         <td>{{ product.minExist}}</td>
         <td>{{ product.price}}</td>
-        <td><img src="{{product.picture}}" class="w-100"></td>
+        <td><img src="{{product.image}}" class="w-100"></td>
+        <!--
+        <td><img [src]="product.image" alt="" style="width: 50px;"></td>
+        -->
         <td>{{ product.idCategory}}</td>
         <td>{{ product.idSupplier}}</td>
         <td><button (click)="getProduct(product.id)" data-toggle="modal" data-target="#ModalEditar" class="btn btn-info">Editar</button></td>
