@@ -147,7 +147,7 @@ export class ProductoComponent implements OnInit {
     );
   }
   resetTempProduct(){
-    this.tempProduct.id = 99;
+    this.tempProduct.id = null;
     this.tempProduct.name = null;
     this.tempProduct.description = null;
     this.tempProduct.currentExist = null;
@@ -158,7 +158,7 @@ export class ProductoComponent implements OnInit {
     this.tempProduct.idSupplier = null;
     this.tempProduct.created_at = null;
     this.tempProduct.updated_at = null;
-    console.log(this.tempProduct); 
+    console.log(this.tempProduct);
   }
   create(){
     console.log(this.tempProduct);
@@ -189,7 +189,7 @@ export class ProductoComponent implements OnInit {
         console.error(error);
       }
     );
-  }  
+  }
   getSuppliers(){
     this._supplierService.getSuppliers().subscribe(
       response=>{

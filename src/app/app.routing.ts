@@ -9,6 +9,8 @@ import{PostNewComponent} from './components/post-new/post-new.component';
 import{UserEditComponent} from './components/user-edit/user-edit.component';
 import {PostDetailComponent} from './components/post-detail/post-detail.component';
 import { ProductoComponent } from './components/producto/producto.component';
+import { ClienteComponent } from './components/cliente/cliente.component';
+import { VentaComponent } from './components/venta/venta.component';
 import{PostEditComponent} from './components/post-edit/post-edit.component';
 
 const appRoutes: Routes=[
@@ -16,6 +18,8 @@ const appRoutes: Routes=[
   {path:'inicio',component:HomeComponent},
   {path:'inicio/:id',component:HomeComponent},
   {path:'producto',component:ProductoComponent},
+  {path:'cliente',component:ClienteComponent},
+  {path:'venta',component:VentaComponent},
   {path:'login',component:LoginComponent},
   {path:'registro',component:RegisterComponent},
   {path:'crear-post',component:PostNewComponent},
