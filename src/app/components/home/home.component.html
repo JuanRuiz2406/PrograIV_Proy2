@@ -1,3 +1,6 @@
+<!--
+
+
 <div class="loading" *ngIf="!posts">
   Cargando...
 </div>
@@ -7,7 +10,7 @@
   <div class="card-columns">
     <span *ngFor="let post of posts">
     <div class="card w-100 fr-box">
-     <!-- <span *ngIf="identity && identity.role=='admin_role'">-->
+     <span *ngIf="identity && identity.role=='admin_role'">
       <div class="card-header mt-2">
         <h5>
           <a [routerLink]="['/post-detalle',post.id]">{{post.title}}</a>
@@ -53,3 +56,4 @@
 
 
 
+-->

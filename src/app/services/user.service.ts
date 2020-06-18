@@ -54,5 +54,4 @@ import{global} from './global';
     return this._http.get(this.url+'user/getidentity',{headers:cabecera});
   }
 
-
 }

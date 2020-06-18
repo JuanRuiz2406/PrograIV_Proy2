@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   public user:User;
   public status:string;
   constructor(private _userService:UserService) {
-    this.user= new User(1,"","","user_role","","","","");
+    this.user= new User(1,"","","","","","","");
   }
 
   ngOnInit(): void {
