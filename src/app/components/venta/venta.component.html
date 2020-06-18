@@ -1,1 +1,161 @@
-<p>venta works!</p>
+<!-- MODAL AGREGAR -->
+<div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalScrollableTitle">Agregar Venta</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form mr-lg-auto" #postEditForm="ngForm">
+          <input name="codigoProducto" hidden="" type="text" class="form-control" [(ngModel)]="tempSale.id">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>IVA</label>
+              <input type="number" name="iva" class="form-control" [(ngModel)]="tempSale.iva">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Precio Total</label>
+              <input type="number" name="totalPrice" class="form-control" [(ngModel)]="tempSale.totalPrice">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Descuento</label>
+              <input type="number" name="discount" class="form-control" [(ngModel)]="tempSale.discount">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Cliente</label>
+              <select name="customer_id" [(ngModel)]="tempSale.idCustomer" class="form-control">
+                <option *ngFor="let cus of customers" value="{{cus.id}}">
+                  {{cus.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="submit" class="btn btn-light" value="Agregar" data-dismiss="modal" (click)="create()">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR -->
+<!-- MODAL EDITAR -->
+<div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalScrollableTitle">Editar Venta</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form mr-lg-auto" #postEditForm="ngForm">
+          <input name="codigoProducto" hidden="" type="text" class="form-control" [(ngModel)]="tempSale.id">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>IVA</label>
+              <input type="number" name="iva" class="form-control" [(ngModel)]="tempSale.iva">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Precio Total</label>
+              <input type="number" name="totalPrice" class="form-control" [(ngModel)]="tempSale.totalPrice">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Descuento</label>
+              <input type="number" name="discount" class="form-control" [(ngModel)]="tempSale.discount">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Cliente</label>
+              <select name="customer_id" [(ngModel)]="tempSale.idCustomer" class="form-control">
+                <option *ngFor="let cus of customers" value="{{cus.id}}">
+                  {{cus.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="submit" class="btn btn-light" value="Actualizar" data-dismiss="modal" (click)="update()">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL EDITAR -->
+<!-- MODAL ELIMINAR -->
+<div class="modal fade" id="borrarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar borrado?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea borrar la venta?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="delete()" data-dismiss="modal">Confirmar
+          borrado</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL ELIMINAR -->
+<!-- TABLA DATOS -->
+<button (click)="resettempSale()" data-toggle="modal" data-target="#ModalAgregar" class="btn btn-warning">Agregar</button>
+<div class="table-responsive-sm">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">IVA</th>
+        <th scope="col">Precio Total</th>
+        <th scope="col">Descuento</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of sales; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ sale.id}}</td>
+        <td>{{ sale.iva}}%</td>
+        <td>{{ sale.totalPrice}}</td>
+        <td>{{ sale.discount}}</td>
+        <td>
+          <span *ngFor="let cus of customers; index as x">
+            <p *ngIf="sale.idCustomer==cus.id">{{ cus.name}}</p>
+          </span>
+        </td>
+        <td><button (click)="getSale(sale.id)" data-toggle="modal" data-target="#ModalEditar"
+            class="btn btn-info">Editar</button>
+            <br>
+            <br>
+          <button (click)="getSale(sale.id)" type="button" class="btn btn-danger mr-2" data-toggle="modal"
+            data-target="#borrarModal">
+            Borrar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- FIN TABLA DATOS -->

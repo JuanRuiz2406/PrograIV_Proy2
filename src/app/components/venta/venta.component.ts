@@ -30,6 +30,7 @@ export class VentaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCustomers();
     this.getSales();
   }
   getSale(id){
