@@ -13,9 +13,14 @@ export class ProductService {
   create(product, token):Observable<any>{
     let json=JSON.stringify(product);
     let params='json='+json;
-    console.log(params);
     let encabezados=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
     return this._http.post(this.url+'product',params,{headers:encabezados});
+  }
+  update(product,token):Observable<any>{
+    let json=JSON.stringify(product);
+    let params='json='+json;
+    let cabeceras=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
+    return this._http.put(this.url+'product/'+product.id,params,{headers:cabeceras});
   }
   getProduct(id):Observable<any>{
     return this._http.get(this.url+'product/'+id);

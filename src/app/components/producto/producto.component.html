@@ -26,19 +26,19 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label>Categoría</label>
-              <select type="text" name="supplier" class="form-control" [(ngModel)]="tempProduct.idCategory">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+              <label>Categoria</label>
+              <select name="category_id" [(ngModel)]="tempProduct.idCategory" class="form-control">
+                <option *ngFor="let cat of categories" value="{{cat.id}}">
+                  {{cat.name}}
+                </option>
               </select>
             </div>
             <div class="form-group col-md-6">
               <label>Proveedor</label>
-              <select type="text" name="supplier" class="form-control" [(ngModel)]="tempProduct.idSupplier">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+              <select name="supplier_id" [(ngModel)]="tempProduct.idSupplier" class="form-control">
+                <option *ngFor="let sup of suppliers" value="{{sup.id}}">
+                  {{sup.name}}
+                </option>
               </select>
             </div>
           </div>
@@ -72,7 +72,7 @@
     </div>
   </div>
 </div>
-<!--MODAL EDITAR -->
+<!--MODAL Agregar -->
 <!--MODAL EDITAR -->
 <div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
   aria-hidden="true">
@@ -101,19 +101,19 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label>Categoría</label>
-              <select type="text" name="supplier" class="form-control" [(ngModel)]="tempProduct.idCategory">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+              <label>Categoria</label>
+              <select name="category_id" [(ngModel)]="tempProduct.idCategory" class="form-control">
+                <option *ngFor="let cat of categories" value="{{cat.id}}">
+                  {{cat.name}}
+                </option>
               </select>
             </div>
             <div class="form-group col-md-6">
               <label>Proveedor</label>
-              <select type="text" name="supplier" class="form-control" [(ngModel)]="tempProduct.idSupplier">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+              <select name="supplier_id" [(ngModel)]="tempProduct.idSupplier" class="form-control">
+                <option *ngFor="let sup of suppliers" value="{{sup.id}}">
+                  {{sup.name}}
+                </option>
               </select>
             </div>
           </div>
@@ -184,8 +184,7 @@
         <th scope="col">ID</th>
         <th scope="col">Nombre</th>
         <th scope="col">Descripción</th>
-        <th scope="col">Existencia Acual</th>
-        <th scope="col">Existencia Mínima</th>
+        <th scope="col">Stock</th>
         <th scope="col">Precio</th>
         <th scope="col">Categoría</th>
         <th scope="col">Proveedor</th>
@@ -200,10 +199,17 @@
         <td>{{ product.name}}</td>
         <td>{{ product.description}}</td>
         <td>{{ product.currentExist}}</td>
-        <td>{{ product.minExist}}</td>
         <td>{{ product.price}}</td>
-        <td>{{ product.idCategory}}</td>
-        <td>{{ product.idSupplier}}</td>
+        <td>
+          <span *ngFor="let cat of categories; index as x">
+            <p *ngIf="product.idCategory==cat.id">{{ cat.name}}</p>
+          </span>
+        </td>
+        <td>
+          <span *ngFor="let sup of suppliers; index as y">
+            <p *ngIf="product.idSupplier==sup.id">{{ sup.name}}</p>
+          </span>
+        </td>
         <td><img src="{{url+'product/getImage/'+product.image}}" class="w-100"></td>
         <td><button (click)="getProduct(product.id)" data-toggle="modal" data-target="#ModalEditar"
             class="btn btn-info">Editar</button>

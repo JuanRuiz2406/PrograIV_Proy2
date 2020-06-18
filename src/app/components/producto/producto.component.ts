@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
 import { global } from '../../services/global';
+import { Category } from '../../models/category';
+import { CategoryService } from '../../services/category.service';
+import { Supplier } from '../../models/supplier';
+import { ProductService } from 'src/app/services/product.service';
+import { SupplierService } from 'src/app/services/supplier.service';
+
 
 @Component({
   selector: 'app-producto',
@@ -12,6 +16,8 @@ import { global } from '../../services/global';
 })
 export class ProductoComponent implements OnInit {
   public products:Array<Product>;
+  public categories:Array<Category>;
+  public suppliers:Array<Supplier>;
   public tempProduct = new Product(null,null,null,null,null,null,null,null,null,null,null);
   public status:string;
   public token;
@@ -47,14 +53,17 @@ export class ProductoComponent implements OnInit {
   constructor(
     private _productService:ProductService,
     private _userService:UserService,
-    private _router:Router
+    private _categoryService:CategoryService,
+    private _supplierService:SupplierService
   ) {
     this.token=this._userService.getToken();
     this.url=global.url;
   }
 
   ngOnInit(): void {
+    this.getCategories();
     this.getProducts();
+    this.getSuppliers();
   }
   getProduct(id){
     this._productService.getProduct(id).subscribe(
@@ -96,7 +105,8 @@ export class ProductoComponent implements OnInit {
   }
   update(){
     this.tempProduct.updated_at = "2020-06-17 08:41:32"
-    this._productService.create(this.tempProduct, this.token).subscribe(
+    console.log(this.tempProduct);
+    this._productService.update(this.tempProduct, this.token).subscribe(
       response=>{
         console.log(response);
         if(response.status=="success"){
@@ -151,10 +161,12 @@ export class ProductoComponent implements OnInit {
     console.log(this.tempProduct); 
   }
   create(){
+    console.log(this.tempProduct);
     this._productService.create(this.tempProduct,this.token).subscribe(
       response=>{
         if(response.status=="success"){
           this.status=response.status;
+          this.ngOnInit();
         }else{
           this.status="error";
         }
@@ -162,6 +174,33 @@ export class ProductoComponent implements OnInit {
       error=>{
         this.status="error";
         console.log(error);
+      }
+    );
+  }
+  getCategories(){
+    this._categoryService.getCategories().subscribe(
+      response=>{
+        if(response.status=='success'){
+          this.categories=response.data;
+          console.log(this.categories);
+        }
+      },
+      error=>{
+        console.error(error);
+      }
+    );
+  }  
+  getSuppliers(){
+    this._supplierService.getSuppliers().subscribe(
+      response=>{
+        console.log(response);
+        if(response.status=='success'){
+          this.suppliers=response.data;
+          console.log(this.categories);
+        }
+      },
+      error=>{
+        console.error(error);
       }
     );
   }
