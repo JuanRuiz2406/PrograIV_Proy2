@@ -1,6 +1,7 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
+
 import {LoginComponent} from './components/login/login.component';
 import {ErrorComponent} from './components/error/error.component';
 import {RegisterComponent} from './components/register/register.component';

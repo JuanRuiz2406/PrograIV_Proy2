@@ -1,55 +1,67 @@
-<div class="container">
-  <br>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">ExtremeTech</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="todo">
+<div class="contenido">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/inicio']">Inicio <span class="sr-only">(current)</span></a>
+<header class="header-login-signup">
+
+	<div class="header-limiter">
+
+		<h1><a href="#">Extreme<span>Tech</span></a></h1>
+
+		<nav>
+			<a [routerLink]="['/producto']">Productos</a>
+			<a [routerLink]="['/cliente']" class="selected">Clientes</a>
+      <a [routerLink]="['/categoria']">Categorías</a>
+      <a [routerLink]="['/proveedor']">Proveedores</a>
+      <a [routerLink]="['/venta']">Ventas</a>
+		</nav>
+
+    <ul id="login"  *ngIf="!identity">
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  [routerLink]="['/registro']">Registro</a>
+      </li>
+    </ul>
+
+    <ul id="logeado" *ngIf="identity">
+        <li class="nav-item dropdown">
+          <a  class=" dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{identity.name}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/editar-usuario']">Editar perfil</a>
+            <a class="dropdown-item" [routerLink]="['/logout/1']">Cerrar sesión</a>
+          </div>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/producto']">Productos <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/cliente']">Cliente <span class="sr-only">(current)</span></a>
-        </li>
-                <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/categoria']">Categorias <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/proveedor']">Proveedores <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/venta']">Venta <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-right" *ngIf="!identity">
-          <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/login']">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"  [routerLink]="['/registro']">Registro</a>
-          </li>
-      </ul>
-      <ul class="navbar-nav navbar-right" *ngIf="identity">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{identity.name}}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" [routerLink]="['/editar-usuario']">Editar perfil</a>
-              <a class="dropdown-item" [routerLink]="['/logout/1']">Cerrar sesión</a>
-            </div>
-          </li>
-      </ul>
-    </div>
-  </nav>
+    </ul>
+
+	</div>
+
+</header>
+<div class="container">
+<div class="route">
+
 
   <router-outlet></router-outlet>
-
-
+</div>
+</div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h1>Proyecto de Programación IV</h1>
+        <p class="text-justify">Descripción del proyecto...</p>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
+      <a href="https://www.instagram.com/buke_e/">Marco Alvarado</a> & 
+      <a href="#">Juan Ruiz</a>.
+    </p>
+  </div>
+</footer>
+</div>
 </div>

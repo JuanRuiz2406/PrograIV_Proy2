@@ -10,7 +10,6 @@ import{routing,appRoutingProviders} from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
-import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProductoComponent } from './components/producto/producto.component';
@@ -21,10 +20,10 @@ import { VentaComponent } from './components/venta/venta.component';
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     LoginComponent,
     ErrorComponent,
-    HomeComponent,
     UserEditComponent,
     RegisterComponent,
     ProductoComponent,
