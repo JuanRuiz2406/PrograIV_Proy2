@@ -3,6 +3,10 @@ import { SaleService } from '../../services/sale.service';
 import { UserService } from '../../services/user.service';
 import { Customer } from '../../models/customer';
 import { CustomerService } from '../../services/customer.service';
+import { Sale_Product } from '../../models/sale_product';
+import { Sale_ProductService } from '../../services/sale_product.service';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { global } from '../../services/global';
 
@@ -14,7 +18,10 @@ import { global } from '../../services/global';
 export class VentaComponent implements OnInit {
   public sales:Array<Sale>;
   public customers:Array<Customer>;
+  public sale_products:Array<Sale_Product>;
+  public products:Array<Product>;
   public tempSale = new Sale(null,null,null,null,null,null,null);
+  public tempSale_Product = new Sale_Product(null,null,null,null,null,null,null);
   public status:string;
   public token;
   public resetVar=false;
@@ -23,7 +30,9 @@ export class VentaComponent implements OnInit {
   constructor(
     private _userService:UserService,
     private _saleService:SaleService,
-    private _customerService:CustomerService
+    private _customerService:CustomerService,
+    private _sale_productService:Sale_ProductService,
+    private _productService:ProductService
   ) {
     this.token=this._userService.getToken();
     this.url=global.url;
@@ -31,7 +40,9 @@ export class VentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomers();
+    this.getSale_Products();
     this.getSales();
+    this.getProducts();
   }
   getSale(id){
     this._saleService.getSale(id).subscribe(
@@ -115,9 +126,36 @@ export class VentaComponent implements OnInit {
     this.tempSale.idCustomer = null;
     console.log(this.tempSale);
   }
+  resettempSale_Product(id){
+    this.tempSale_Product.id = null;
+    this.tempSale_Product.quantity = null;
+    this.tempSale_Product.totalPrice = null;
+    this.tempSale_Product.created_at = null;
+    this.tempSale_Product.updated_at = null;
+    this.tempSale_Product.idSale = id;
+    this.tempSale_Product.idProduct = null;
+    console.log(this.tempSale_Product);
+  }
   create(){
     console.log(this.tempSale);
     this._saleService.create(this.tempSale,this.token).subscribe(
+      response=>{
+        if(response.status=="success"){
+          this.status=response.status;
+          this.ngOnInit();
+        }else{
+          this.status="error";
+        }
+      },
+      error=>{
+        this.status="error";
+        console.log(error);
+      }
+    );
+  }
+  createSaleProduct(){
+    console.log(this.tempSale_Product);
+    this._sale_productService.create(this.tempSale_Product,this.token).subscribe(
       response=>{
         if(response.status=="success"){
           this.status=response.status;
@@ -142,6 +180,32 @@ export class VentaComponent implements OnInit {
       },
       error=>{
         console.error(error);
+      }
+    );
+  }
+  getSale_Products(){
+    this._sale_productService.getSaleProducts().subscribe(
+      response=>{
+        if(response.status=='success'){
+          this.sale_products=response.data;
+          console.log(this.sale_products);
+        }
+      },
+      error=>{
+        console.error(error);
+      }
+    );
+  }
+  getProducts(){
+    this._productService.getProducts().subscribe(
+      response=>{
+        if(response.status=="success"){
+          console.log(response);
+          this.products=response.data;
+        }
+      },
+      error=>{
+        console.log(error);
       }
     );
   }
