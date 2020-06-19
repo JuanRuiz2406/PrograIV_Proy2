@@ -18,6 +18,11 @@ import { PostNewComponent } from './components/post-new/post-new.component';
 import { CategoryNewComponent } from './components/category-new/category-new.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import { ProductoComponent } from './components/producto/producto.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { SupplierComponent } from './components/supplier/supplier.component';
+import { ClienteComponent } from './components/cliente/cliente.component';
+import { VentaComponent } from './components/venta/venta.component';
 
 
 @NgModule({
@@ -31,7 +36,12 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
     PostNewComponent,
     CategoryNewComponent,
     PostDetailComponent,
-    PostEditComponent
+    PostEditComponent,
+    ProductoComponent,
+    ClienteComponent,
+    VentaComponent,
+    CategoriaComponent,
+    SupplierComponent
   ],
   imports: [
     BrowserModule,

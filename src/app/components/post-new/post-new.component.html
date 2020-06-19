@@ -1,0 +1,43 @@
+<div class="col-md-12 mt-3">
+  <h1>Crear una entrada al post</h1>
+
+  <div class="alert alert-success" *ngIf="status=='success'">
+      El registro se almacenó correctamente!
+  </div>
+  <div class="alert alert-danger" *ngIf="status=='error'">
+    Error al almacenar la información!
+</div>
+
+  <form class="col-md-6 mr-auto ml-auto" #postNewForm="ngForm" (ngSubmit)="onSubmit(postNewForm)">
+    <div class="form-group">
+      <label>Titulo</label>
+      <input type="text" name="title" class="form-control" #title="ngModel" [(ngModel)]="post.title" required pattern="[a-zA-Z ]+">
+      <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">El titulo no es valido</small>
+    </div>
+    <div class="form-group">
+        <label>Contenido</label>
+        <textarea [froalaEditor]="options" name="content" class="form-control" #content="ngModel" [(ngModel)]="post.content" required>
+        </textarea>
+        <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">El contenido no es valido</small>
+    </div>
+    <div class="form-group">
+      <label>Categoria</label>
+      <select name="category_id" #category="ngModel" [(ngModel)]="post.category_id" class="form-control">
+        <option *ngFor="let cat of categories" value="{{cat.id}}">
+          {{cat.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label>Imagen</label>
+        <angular-file-uploader
+          [config]="afuConfig"
+          [resetUpload]=resetVar
+          (ApiResponse)="imageUpload($event)">
+        </angular-file-uploader>
+    </div>
+
+    <input type="submit" value="Registrarse" class="btn btn-success" [disabled]="postNewForm.invalid">
+  </form>
+
+</div>

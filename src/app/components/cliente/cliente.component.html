@@ -1,0 +1,170 @@
+<!-- MODAL AGREGAR -->
+<div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalScrollableTitle">Agregar Cliente</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form mr-lg-auto" #postEditForm="ngForm" >
+          <input name="codigoCliente" hidden="" type="text" class="form-control" [(ngModel)]="tempCustomer.id">
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label>Código</label>
+                  <input type="text" name="id" class="form-control"  [(ngModel)]="tempCustomer.id">
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Nombre</label>
+                <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="tempCustomer.name" required pattern="[a-zA-Z ]+">
+                <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Apellido</label>
+                <input type="text" name="last_name" class="form-control"  [(ngModel)]="tempCustomer.last_name">
+            </div>
+        </div>
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label>Dirección</label>
+                  <input type="text" name="address" class="form-control"  [(ngModel)]="tempCustomer.address" >
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Teléfono</label>
+                <input type="number" name="phone" class="form-control"  [(ngModel)]="tempCustomer.phone" >
+            </div>
+            <div class="form-group col-md-6">
+                <label>Correo Electrónico</label>
+                <input type="text" name="email" class="form-control"  [(ngModel)]="tempCustomer.email">
+            </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="submit" class="btn btn-light" value="Agregar" data-dismiss="modal" (click)="create()">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR -->
+<!-- MODAL EDITAR -->
+<div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalScrollableTitle">Editar Cliente</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form class="form mr-lg-auto" #postEditForm="ngForm" >
+          <input name="codigoCustomer" hidden="" type="text" class="form-control" [(ngModel)]="tempCustomer.id">
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label>Nombre</label>
+                  <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="tempCustomer.name" required pattern="[a-zA-Z ]+">
+                  <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+              </div>
+              <div class="form-group col-md-6">
+                  <label>Apellido</label>
+                  <input type="text" name="last_name" class="form-control"  [(ngModel)]="tempCustomer.last_name">
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label>Dirección</label>
+                  <input type="text" name="address" class="form-control"  [(ngModel)]="tempCustomer.address" >
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Teléfono</label>
+                <input type="text" name="phone" class="form-control"  [(ngModel)]="tempCustomer.phone" >
+            </div>
+            <div class="form-group col-md-6">
+                <label>Correo Electrónico</label>
+                <input type="text" name="email" class="form-control"  [(ngModel)]="tempCustomer.email">
+            </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="submit" class="btn btn-light" value="Actualizar" data-dismiss="modal" (click)="update()">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL EDITAR -->
+<!-- MODAL ELIMINAR -->
+<div class="modal fade" id="borrarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar borrado?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea borrar el cliente?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="delete()" data-dismiss="modal">Confirmar
+          borrado</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL ELIMINAR -->
+<!-- TABLA DATOS -->
+<button (click)="resetTempCustomer()" data-toggle="modal" data-target="#ModalAgregar" class="btn btn-warning">Agregar</button>
+<div class="table-responsive-sm">
+  <table class="table">
+  <thead class="thead-dark">
+  <tr>
+      <th scope="col">#</th>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Correo Electrónico</th>
+      <th scope="col">Acción</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ customer.id}}</td>
+      <td>{{ customer.name}}</td>
+      <td>{{ customer.last_name}}</td>
+      <td>{{ customer.address}}</td>
+      <td>{{ customer.phone}}</td>
+      <td>{{ customer.email}}</td>
+        <td><button (click)="getCustomer(customer.id)" data-toggle="modal" data-target="#ModalEditar"
+            class="btn btn-info">Editar</button>
+            <br>
+            <br>
+          <button (click)="getCustomer(customer.id)" type="button" class="btn btn-danger mr-2" data-toggle="modal"
+            data-target="#borrarModal">
+            Borrar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- FIN TABLA DATOS -->
