@@ -44,6 +44,7 @@ export class VentaComponent implements OnInit {
     this.getSales();
     this.getProducts();
   }
+  // SALE
   getSale(id){
     this._saleService.getSale(id).subscribe(
       response=>{
@@ -100,6 +101,24 @@ export class VentaComponent implements OnInit {
     );
   }
   delete(){
+    console.log(this.sale_products);
+    for (let saleProd of this.sale_products) {
+      console.log(saleProd.idProduct);
+      if (saleProd.idSale == this.tempSale.id) {
+        console.log(saleProd.idProduct);
+        this._sale_productService.delete(this.token,saleProd.id).subscribe(
+          response=>{
+            if(response.status=='success'){
+              console.log(response);
+            }
+          },
+          error=>{
+            console.error(error);
+          }
+        );
+      }
+    }
+
     console.log(this.tempSale.id);
     this._saleService.delete(this.token,this.tempSale.id).subscribe(
       response=>{
@@ -126,16 +145,6 @@ export class VentaComponent implements OnInit {
     this.tempSale.idCustomer = null;
     console.log(this.tempSale);
   }
-  resettempSale_Product(id){
-    this.tempSale_Product.id = null;
-    this.tempSale_Product.quantity = null;
-    this.tempSale_Product.totalPrice = null;
-    this.tempSale_Product.created_at = null;
-    this.tempSale_Product.updated_at = null;
-    this.tempSale_Product.idSale = id;
-    this.tempSale_Product.idProduct = null;
-    console.log(this.tempSale_Product);
-  }
   create(){
     console.log(this.tempSale);
     this._saleService.create(this.tempSale,this.token).subscribe(
@@ -153,6 +162,18 @@ export class VentaComponent implements OnInit {
       }
     );
   }
+
+  // SALE PRODUCT
+  resettempSale_Product(id){
+    this.tempSale_Product.id = null;
+    this.tempSale_Product.quantity = null;
+    this.tempSale_Product.totalPrice = null;
+    this.tempSale_Product.created_at = null;
+    this.tempSale_Product.updated_at = null;
+    this.tempSale_Product.idSale = id;
+    this.tempSale_Product.idProduct = null;
+    console.log(this.tempSale_Product);
+  }
   createSaleProduct(){
     console.log(this.tempSale_Product);
     this._sale_productService.create(this.tempSale_Product,this.token).subscribe(
@@ -167,19 +188,6 @@ export class VentaComponent implements OnInit {
       error=>{
         this.status="error";
         console.log(error);
-      }
-    );
-  }
-  getCustomers(){
-    this._customerService.getCustomers().subscribe(
-      response=>{
-        if(response.status=='success'){
-          this.customers=response.data;
-          console.log(this.customers);
-        }
-      },
-      error=>{
-        console.error(error);
       }
     );
   }
@@ -206,6 +214,21 @@ export class VentaComponent implements OnInit {
       },
       error=>{
         console.log(error);
+      }
+    );
+  }
+
+  // CUSTOMER
+  getCustomers(){
+    this._customerService.getCustomers().subscribe(
+      response=>{
+        if(response.status=='success'){
+          this.customers=response.data;
+          console.log(this.customers);
+        }
+      },
+      error=>{
+        console.error(error);
       }
     );
   }
