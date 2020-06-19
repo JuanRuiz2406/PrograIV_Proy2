@@ -189,7 +189,7 @@
         <th scope="col">Categoría</th>
         <th scope="col">Proveedor</th>
         <th scope="col">Imagen</th>
-        <th scope="col">Acción</th>
+        <th *ngIf="token" scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
@@ -212,7 +212,7 @@
           </span>
         </td>
         <td><img src="{{url+'product/getImage/'+product.image}}" class="w-100"></td>
-        <td><button (click)="getProduct(product.id)" data-toggle="modal" data-target="#ModalEditar"
+        <td *ngIf="token" ><button (click)="getProduct(product.id)" data-toggle="modal" data-target="#ModalEditar"
             class="btn btn-info">Editar</button>
             <br>
             <br>

@@ -175,7 +175,7 @@
         <th scope="col">Descuento</th>
         <th scope="col">Cliente</th>
         <th scope="col">Productos</th>
-        <th scope="col">Acción</th>
+        <th *ngIf="token" scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
@@ -197,7 +197,7 @@
             </span>
           </span>
         </td>
-        <td>
+        <td *ngIf="token">
           <button (click)="resettempSale_Product(sale.id)" data-toggle="modal" data-target="#ModalAgregarProducto"
           class="btn btn-warning">Agregar Producto</button>
             <br>
