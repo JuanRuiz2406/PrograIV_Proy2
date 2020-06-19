@@ -1,9 +1,5 @@
-<!--
-
-
 <div class="col-md-12 mt-3">
-  <h1>Ajustes de Usuario</h1>
-
+  <h1>Editar Usuario</h1>
 
   <div class="alert alert-success" *ngIf="status=='success'">
       El registro se almacenó correctamente!
@@ -23,28 +19,43 @@
         <input type="text" name="last_name"  class="form-control" #last_name="ngModel" [(ngModel)]="user.last_name" required pattern="[a-zA-Z ]+">
     </div>
     <div class="form-group">
-        <label>email</label>
-        <input type="email" name="email"  class="form-control" #email="ngModel" [(ngModel)]="user.email" [disabled]=true>
+      <label>Usuario</label>
+      <input type="text" name="last_name"  class="form-control" #last_name="ngModel" [(ngModel)]="user.username" required pattern="[a-zA-Z ]+">
     </div>
     <div class="form-group">
-      <label>Biografia</label>
-      <textarea [froalaEditor]="options" type="text" id="description" name="description"  class="form-control" #description="ngModel" [(ngModel)]="user.description" [(froalaModel)]="user.description"> </textarea>
+      <label>Correo</label>
+      <input type="text" name="email"  class="form-control" #last_name="ngModel" [(ngModel)]="user.email">
     </div>
-
-    <div class="form-group">
-      <label>Avatar</label>
-      <div *ngIf="identity && identity.image" class="mb-4" >
-         <img src={{urlImg+identity.image}} width=100px>
-      </div>
-      <angular-file-uploader
-        [config]="afuConfig"
-        [resetUpload]=resetVar
-        (ApiResponse)="avatarUpload($event)">
-      </angular-file-uploader>
-    </div>
-
     <input type="submit" value="Guardar" class="btn btn-success" [disabled]="userEditForm.invalid">
+    <button type="button" class="btn btn-danger mr-2" data-toggle="modal"
+    data-target="#borrarModal">
+    Borrar
+  </button>
   </form>
 
 </div>
--->
+
+<!--MODAL ELIMINAR -->
+<div class="modal fade" id="borrarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar borrado?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea borrar el producto?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="delete()" data-dismiss="modal">Confirmar
+          borrado</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL ELIMINAR -->

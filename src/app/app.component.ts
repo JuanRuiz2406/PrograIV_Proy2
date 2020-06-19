@@ -1,6 +1,5 @@
 import { Component,OnInit,DoCheck} from '@angular/core';
 import {UserService} from './services/user.service';
-import {global} from './services/global';
 import {CategoryService} from './services/category.service';
 
 @Component({
@@ -24,7 +23,6 @@ export class AppComponent {
     public _categoryService:CategoryService
     ){
     this.loadStorage();
-    this.urlImg=global.url+'user/avatar/';
     this.times=0;
   }
   ngOnInit(){
@@ -34,24 +32,8 @@ export class AppComponent {
     this.times++;
     if(this.times>1){
       this.loadStorage();
-      this.loadCategories();
       this.times=0;
     }
-  }
-  public loadCategories(){
-    this._categoryService.getCategories().subscribe(
-      response=>{
-        if(response.status=="success"){
-          this.categories=response.data;
-        }else{
-          this.categories=null;
-        }
-      },
-      error=>{
-        this.categories=null;
-        console.log(error);
-      }
-    );
   }
   public loadStorage(){
     this.identity=this._userService.getIdentity();

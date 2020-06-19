@@ -1,8 +1,7 @@
 <div class="col-md-12 mt-3">
-  <h1>Registro de Usuario</h1>
-  <h5>Registrate como usuario para poder participar en el blog</h5>
+  <h1>Crear cuenta de Usuario</h1>
   <div class="alert alert-success" *ngIf="status=='success'">
-    El registro se almacenó satisfactoriamente!
+    El Usuario se Registró satisfactoriamente!
   </div>
   <div class="alert alert-danger" *ngIf="status=='error'">
     Error al guardar la información, verique que su correo no este registrado!
@@ -19,11 +18,15 @@
         <input type="text" name="last_name"  class="form-control" #last_name="ngModel" [(ngModel)]="user.last_name" required pattern="[a-zA-Z ]+">
         <small *ngIf="!last_name.valid && last_name.touched" class="invalid-feedback d-block">El apellido no es válido</small>
       </div>
+      <div class="form-group">
+        <label>Usuario</label>
+        <input type="text" name="username"  class="form-control" [(ngModel)]="user.username">
+    </div>
     <div class="form-group">
-        <label>email</label>
+        <label>Correo</label>
         <input type="email" name="email"  class="form-control" #email="ngModel" [(ngModel)]="user.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 
-      </div>
+    </div>
     <div class="form-group">
         <label>Contraseña</label>
         <input type="password" name="password"  class="form-control" #password="ngModel" [(ngModel)]="user.password" required>

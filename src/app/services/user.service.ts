@@ -53,5 +53,8 @@ import{global} from './global';
     let cabecera=new HttpHeaders().set('token',this.token);
     return this._http.get(this.url+'user/getidentity',{headers:cabecera});
   }
-
+  delete(token,id):Observable<any>{
+    let cabeceras=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
+    return this._http.delete(this.url+'user/'+id,{headers:cabeceras});
+  }
 }

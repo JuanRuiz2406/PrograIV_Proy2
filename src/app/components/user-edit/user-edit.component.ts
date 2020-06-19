@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2} from '@angular/core';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
-import {global} from '../../services/global';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-edit',
@@ -17,57 +17,23 @@ export class UserEditComponent implements OnInit {
   public identity;
   public token;
   public status;
-  public urlImg;
   public resetVar=false;
 
-
-  public options: Object = {
-    charCounterCount: true,
-    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-  };
-
-  afuConfig = {
-    multiple: false,
-    formatsAllowed: ".jpg,.png",
-    maxSize: "5",
-    uploadAPI:  {
-      url:global.url+'user/upload',
-      method:"POST",
-      headers: {
-        "token" : localStorage.getItem('token')
-      }
-    },
-    theme: "attachPin",
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: true,
-    fileNameIndex: true,
-    replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Attach Files...',
-      afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-      sizeLimit: 'Size Limit'
-    }
-};
-  constructor(private _userService:UserService,private render:Renderer2) {
+  constructor(
+    private _userService:UserService,
+    private render:Renderer2,
+    private _router:Router
+    ) {
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
     this.user=new User(
       this.identity.sub,
       this.identity.name,
       this.identity.last_name,
-      this.identity.role,
-      this.identity.email,"",this.identity.description,
-      this.identity.image
+      this.identity.email,
+      this.identity.username,"","",""
     );
-    this.urlImg=global.url+'user/avatar/'
+    console.log(this.user);
   }
 
   ngOnInit(): void {
@@ -75,10 +41,11 @@ export class UserEditComponent implements OnInit {
   }
   avatarUpload(respuesta){
     let data=JSON.parse(respuesta.response);
-    //this.user.image=data.image;
   }
   onSubmit(form){
     console.log(this.user);
+    this.user.updated_at = "2020-06-17 08:41:32";
+
     this._userService.update(this.user).subscribe(
       response=>{
         if(response.status=="success"){
@@ -98,5 +65,22 @@ export class UserEditComponent implements OnInit {
       }
     );
   }
+  delete(){
+    console.log(this.identity.sub);
+    this._userService.delete(this.token,this.identity.sub).subscribe(
+      response=>{
+        if(response.status=="success"){
+          console.log(response);
+          this._router.navigate(['logout/1']);
+        }
+        else{
+          console.log(response);
+        }
 
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
 }
