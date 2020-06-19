@@ -1,4 +1,4 @@
-export class SaleProducts{
+export class Sale_Product{
     constructor(
       public id:number,
       public quantity:number,

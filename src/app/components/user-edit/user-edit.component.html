@@ -20,11 +20,11 @@
     </div>
     <div class="form-group">
       <label>Usuario</label>
-      <input type="text" name="last_name"  class="form-control" #last_name="ngModel" [(ngModel)]="user.username" required pattern="[a-zA-Z ]+">
+      <input type="text" name="username"  class="form-control" #username="ngModel" [(ngModel)]="user.username" required pattern="[a-zA-Z ]+">
     </div>
     <div class="form-group">
       <label>Correo</label>
-      <input type="text" name="email"  class="form-control" #last_name="ngModel" [(ngModel)]="user.email">
+      <input type="text" name="email"  class="form-control" #email="ngModel" [(ngModel)]="user.email">
     </div>
     <input type="submit" value="Guardar" class="btn btn-success" [disabled]="userEditForm.invalid">
     <button type="button" class="btn btn-danger mr-2" data-toggle="modal"
@@ -42,18 +42,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirmar borrado?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Esta seguro que desea borrar el producto?
+        Está seguro de que desea eliminar su usuario?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-danger mr-2" (click)="delete()" data-dismiss="modal">Confirmar
-          borrado</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="delete()" data-dismiss="modal">Confirmar</button>
       </div>
     </div>
   </div>

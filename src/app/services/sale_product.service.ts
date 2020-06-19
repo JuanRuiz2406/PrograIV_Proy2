@@ -5,32 +5,32 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SaleService {
+export class Sale_ProductService {
   public url:string;
   constructor(public _http:HttpClient) {
     this.url=global.url;
   }
-  create(sale, token):Observable<any>{
-    let json=JSON.stringify(sale);
+  create(sale_product, token):Observable<any>{
+    let json=JSON.stringify(sale_product);
     let params='json='+json;
     let encabezados=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
-    return this._http.post(this.url+'sale',params,{headers:encabezados});
+    return this._http.post(this.url+'sale_product',params,{headers:encabezados});
   }
-  update(sale,token):Observable<any>{
-    let json=JSON.stringify(sale);
+  update(sale_product,token):Observable<any>{
+    let json=JSON.stringify(sale_product);
     let params='json='+json;
     let cabeceras=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
-    return this._http.put(this.url+'sale/'+sale.id,params,{headers:cabeceras});
+    return this._http.put(this.url+'sale_product/'+sale_product.id,params,{headers:cabeceras});
   }
-  getSale(id):Observable<any>{
-    return this._http.get(this.url+'sale/'+id);
+  getSaleProduct(id):Observable<any>{
+    return this._http.get(this.url+'sale_product/'+id);
   }
-  getSales():Observable<any>{
+  getSaleProducts():Observable<any>{
     let cabeceras=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    return this._http.get(this.url+'sale',{headers:cabeceras});
+    return this._http.get(this.url+'sale_product',{headers:cabeceras});
   }
   delete(token,id):Observable<any>{
     let cabeceras=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
-    return this._http.delete(this.url+'sale/'+id,{headers:cabeceras});
+    return this._http.delete(this.url+'sale_product/'+id,{headers:cabeceras});
   }
 }
