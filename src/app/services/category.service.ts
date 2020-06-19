@@ -20,5 +20,14 @@ import {global} from './global';
     getCategory(id):Observable<any>{
       return this._http.get(this.url+'category/'+id);
     }
-
+    delete(token,id):Observable<any>{
+        let cabeceras=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
+        return this._http.delete(this.url+'category/'+id,{headers:cabeceras});
+    }
+    update(category,token):Observable<any>{
+        let json=JSON.stringify(category);
+        let params='json='+json;
+        let cabeceras=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('token',token);
+        return this._http.put(this.url+'category/'+category.id,params,{headers:cabeceras});
+    }
 }

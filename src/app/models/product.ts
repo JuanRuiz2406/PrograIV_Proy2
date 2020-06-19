@@ -9,7 +9,7 @@ export class Product{
       public image:string,
       public created_at:any,
       public updated_at:any,
-      public idSupplier:any,
+      public idSupplier:number,
       public idCategory:number
     ){}
   }

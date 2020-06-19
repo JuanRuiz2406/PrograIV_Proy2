@@ -1,0 +1,156 @@
+<!--MODAL EDITAR -->
+<div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalScrollableTitle">Agregar Proveedor</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form mr-lg-auto" #postEditForm="ngForm">
+          <input name="codigoProveedor" hidden="" type="text" class="form-control" [(ngModel)]="tempSupplier.id">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Nombre</label>
+              <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="tempSupplier.name"
+                required pattern="[a-zA-Z ]+">
+              <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Dirección</label>
+              <input type="text" name="direccion" class="form-control" [(ngModel)]="tempSupplier.address">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Correo</label>
+              <input type="text" name="email" class="form-control" #name="ngModel" [(ngModel)]="tempSupplier.email"
+                required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+              <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Teléfono</label>
+              <input type="text" name="phone" class="form-control" [(ngModel)]="tempSupplier.phone">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="submit" class="btn btn-light" value="Agregar" data-dismiss="modal" (click)="create()">
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL Agregar -->
+<!--MODAL EDITAR -->
+<div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalScrollableTitle">Editar Proveedor</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form mr-lg-auto" #postEditForm="ngForm">
+          <input name="codigoProveedor" hidden="" type="text" class="form-control" [(ngModel)]="tempSupplier.id">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Nombre</label>
+              <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="tempSupplier .name"
+                required pattern="[a-zA-Z ]+">
+              <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Dirección</label>
+              <input type="text" name="direccion" class="form-control" [(ngModel)]="tempSupplier.address">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Correo</label>
+              <input type="text" name="email" class="form-control" #name="ngModel" [(ngModel)]="tempSupplier.email"
+              required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+              <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Teléfono</label>
+              <input type="text" name="phone" class="form-control" [(ngModel)]="tempSupplier.phone">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="submit" class="btn btn-light" value="Actualizar" data-dismiss="modal" (click)="update()">
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN MODAL EDITAR -->
+<!--INICIO MODAL ELIMINAR -->
+<div class="modal fade" id="borrarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar borrado?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea borrar este proveedor?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="delete()" data-dismiss="modal">Confirmar
+          borrado</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL ELIMINAR -->
+<button (click)="resetTempSupplier()" data-toggle="modal" data-target="#ModalAgregar" class="btn btn-warning">Agregar</button>
+<div class="table-responsive-sm">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sup of suppliers; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ sup.id}}</td>
+        <td>{{ sup.name}}</td>
+        <td>{{ sup.address}}</td>
+        <td>{{ sup.email}}</td>
+        <td>{{ sup.phone}}</td>
+        <td>
+            <button (click)="getSupplier(sup.id)" data-toggle="modal" data-target="#ModalEditar"
+            class="btn btn-info">Editar</button>
+            <br>
+            <br>
+          <button (click)="getSupplier(sup.id)" type="button" class="btn btn-danger mr-2" data-toggle="modal"
+            data-target="#borrarModal">
+            Borrar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AngularFileUploaderModule} from 'angular-file-uploader';
 import {FroalaEditorModule,FroalaViewModule} from 'angular-froala-wysiwyg';
 
+
 import{routing,appRoutingProviders} from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,8 @@ import { CategoryNewComponent } from './components/category-new/category-new.com
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { ProductoComponent } from './components/producto/producto.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { SupplierComponent } from './components/supplier/supplier.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { VentaComponent } from './components/venta/venta.component';
 
@@ -36,7 +39,9 @@ import { VentaComponent } from './components/venta/venta.component';
     PostEditComponent,
     ProductoComponent,
     ClienteComponent,
-    VentaComponent
+    VentaComponent,
+    CategoriaComponent,
+    SupplierComponent
   ],
   imports: [
     BrowserModule,
