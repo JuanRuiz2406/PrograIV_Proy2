@@ -1,7 +1,6 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
 import {ErrorComponent} from './components/error/error.component';
 import {RegisterComponent} from './components/register/register.component';
@@ -13,9 +12,7 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { VentaComponent } from './components/venta/venta.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'inicio', component: HomeComponent},
-  {path: 'inicio/:id', component: HomeComponent},
+  {path: '', component: ProductoComponent},
   {path: 'producto', component: ProductoComponent},
   {path: 'categoria', component: CategoriaComponent},
   {path: 'proveedor', component: SupplierComponent},
