@@ -198,7 +198,8 @@
         <td>{{ product.id}}</td>
         <td>{{ product.name}}</td>
         <td>{{ product.description}}</td>
-        <td>{{ product.currentExist}}</td>
+        <td *ngIf="product.currentExist <= product.minExist" [ngStyle]="{'background-color':'#FDFD96'}">{{ product.currentExist}}</td>
+        <td *ngIf="product.currentExist > product.minExist">{{ product.currentExist}}</td>
         <td>{{ product.price}}</td>
         <td>
           <span *ngFor="let cat of categories; index as x">
